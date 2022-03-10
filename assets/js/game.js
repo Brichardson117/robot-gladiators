@@ -1,15 +1,8 @@
-var playerName = window.prompt("What is your robot's name?");
-var playerHealth = 100;
-var playerAttack = 10;
-var playerMoney = 10;
 
-var enemyNames = ['Roborto', 'Amy Android', 'Robo Trumble'];
-var enemyHealth = 50;
-var enemyAttack = 12;
-
-
-
-
+var randomNumber = function (min, max) {
+  var value = Math.floor(Math.random() * (max - min + 1)) + min;
+  return value;
+};
 var fight = function(enemyName) {
   while (playerHealth > 0 && enemyHealth > 0) {
     
@@ -24,13 +17,13 @@ var fight = function(enemyName) {
       if (confirmSkip) {
         window.alert(playerName + ' has decided to skip this fight. Goodbye!');
         
-        playerMoney = playerMoney - 10;
+        playerMoney = Math.max(0, playerMoney - 10);
         console.log("playerMoney", playerMoney);
         break;
       }
     }
-
-    enemyHealth = enemyHealth - playerAttack;
+var damage = randomNumber(playerAttack - 3, playerAttack)
+    enemyHealth = Math.max(0, enemyHealth - damage);
     console.log(
       playerName + ' attacked ' + enemyName + '. ' + enemyName + ' now has ' + enemyHealth + ' health remaining.'
     );
@@ -46,8 +39,8 @@ var fight = function(enemyName) {
     } else {
       window.alert(enemyName + ' still has ' + enemyHealth + ' health left.');
     }
-
-    playerHealth = playerHealth - enemyAttack;
+var damage = randomNumber(enemyAttack - 3, enemyAttack);
+    playerHealth = Math.max(0, playerHealth - damage);
     console.log(
       enemyName + ' attacked ' + playerName + '. ' + playerName + ' now has ' + playerHealth + ' health remaining.'
     );
@@ -65,9 +58,7 @@ var fight = function(enemyName) {
 
 
 var startGame = function() {
-  playerHealth = 100;
-  playerAttack = 10;
-  playerMoney = 10
+
   for (var i = 0; i < enemyNames.length; i++) {
     
     if (playerHealth > 0) {
@@ -78,7 +69,7 @@ var startGame = function() {
       var pickedEnemyName = enemyNames[i];
 
      
-      enemyHealth = 50;
+      enemyHealth = randomNumber();
 
       fight(pickedEnemyName);
 
@@ -96,10 +87,14 @@ var startGame = function() {
   else {
     window.alert('You have lost your robot in battle! Game Over!');
     break;
+   }
   }
-}
-endGame()
+    endGame()
 };
+
+
+
+
   
   var endGame = function () {
     window.alert ("The game has now ended. Let's see how you did!");
@@ -120,7 +115,6 @@ endGame()
   var shop = function() {
     var shopOptionPrompt = window.prompt("would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 'REFIL', 'UPGRADE', or 'LEAVE' to make a choice."
     );
-
   switch (shopOptionPrompt) {
     case "refill":
     case "REFILL":
