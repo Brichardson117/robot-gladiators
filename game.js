@@ -1,4 +1,4 @@
-//get player name for their robor
+//get player name for their robot
 let playerName = window.prompt("What is your robot's name?");
 //robots stats
 let playerHealth = 100;
@@ -10,13 +10,13 @@ console.log(
 );
 
 //first enemy's name
-let enemyName = "Roborto";
+let enemyName = ['Roborto', 'Amy Android', 'Robo Tumble']
 // enemy stats
 let enemyHealth = 50;
 let enemyAttack = 12;
 
 // fight function expression
-let fight = function () {
+let fight = function (enemyName) {
   //notify player that the fights begun
   window.alert("Welcome to the Robot Gladiators");
 
@@ -75,4 +75,7 @@ let fight = function () {
   }
 };
 
-fight();
+//loops through enemies for player to fight all enemys in fight function 
+for(let i = 0; i < enemyName.length; i++){
+  fight(enemyName[i]);
+};
